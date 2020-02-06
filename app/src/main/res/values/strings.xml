@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FindLocation</string>
+
+    <string name="api_key_weather">05a468bfd2d568fe3270f012498bfd0a</string>
+
 </resources>
