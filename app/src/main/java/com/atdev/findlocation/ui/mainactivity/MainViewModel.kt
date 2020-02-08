@@ -1,4 +1,4 @@
-package com.atdev.findlocation
+package com.atdev.findlocation.ui.mainactivity
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

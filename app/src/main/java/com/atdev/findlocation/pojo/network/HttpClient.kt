@@ -34,6 +34,7 @@ object HttpClient {
 
             override fun intercept(chain: Interceptor.Chain): Response {
 
+                //..
                 val url = chain.request().url
 
                 val httpUrl = url.newBuilder()

@@ -1,4 +1,4 @@
-package com.atdev.findlocation
+package com.atdev.findlocation.ui.mainactivity
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
@@ -6,22 +6,18 @@ import android.location.Location
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.telecom.Connection
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.atdev.findlocation.R
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
-import com.google.android.gms.common.GooglePlayServicesUtil
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationListener
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
-import java.net.CacheRequest
-import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
     GoogleApiClient.OnConnectionFailedListener, LocationListener {
@@ -56,7 +52,7 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
             //..
             Toast.makeText(this, rootObject.weather[0].toString(), Toast.LENGTH_LONG).show()
             tvWeather.text =
-                "${rootObject.coord} ${rootObject.weather[0]} + ${rootObject.main} + ${rootObject.wind}"
+                "${rootObject.coord} \n ${rootObject.weather[0]} \n ${rootObject.main} \n ${rootObject.wind}"
         })
 //
 
