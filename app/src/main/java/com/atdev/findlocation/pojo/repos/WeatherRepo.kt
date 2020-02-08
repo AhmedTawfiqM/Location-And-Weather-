@@ -24,8 +24,8 @@ object WeatherRepo {
 
                     CoroutineScope(Dispatchers.IO + thejob).launch {
 
-                        val rootObject = RetrofitBuilder.apiService.getWeather(lat, lon, RetrofitBuilder.API_KEY)
-                        withContext(Dispatchers.Main){
+                        val rootObject = RetrofitBuilder.apiService.getWeather(lat, lon)
+                        withContext(Dispatchers.Main) {
 
                             value = rootObject
                             thejob.complete()
@@ -36,7 +36,7 @@ object WeatherRepo {
         }
     }
 
-    fun cancelJob(){
+    fun cancelJob() {
         job!!.cancel()
     }
 }

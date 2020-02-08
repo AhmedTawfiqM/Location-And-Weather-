@@ -12,8 +12,7 @@ interface ApiService {
     @GET("weather")
     suspend fun getWeather(
         @Query("lat") lat: Double,
-        @Query("lon") lon: Double,
-        @Query("appid") appidKey: String
+        @Query("lon") lon: Double
     ): RootObject
 
     //
