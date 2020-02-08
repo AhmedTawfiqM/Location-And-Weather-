@@ -10,6 +10,8 @@ import android.telecom.Connection
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.GooglePlayServicesUtil
@@ -24,6 +26,7 @@ import java.util.jar.Manifest
 class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
     GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
+    lateinit var viewModel: MainViewModel
     val REQUEST_CODE = 21212
     val PLaySERVICE_Request = 32
 
@@ -34,12 +37,29 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
 
         checkPermissions()
 
         if (checkPermissions())
             buildLocationNow()
+
+
+    }
+
+
+    private fun observerWeatherAPI() {
+
+        //viewModel.setLatLon(12.21, 213.1) //for First Initial
+        viewModel.rootObject.observe(this, Observer { rootObject ->
+            //..
+            Toast.makeText(this, rootObject.weather[0].toString(), Toast.LENGTH_LONG).show()
+            tvWeather.text =
+                "${rootObject.coord} ${rootObject.weather[0]} + ${rootObject.main} + ${rootObject.wind}"
+        })
+//
+
     }
 
     private fun checkPermissions(): Boolean {
@@ -147,13 +167,25 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
         fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
             location?.let { it: Location ->
                 // Logic to handle location object
-                tvLocation.text = "${location!!.latitude} - ${location.longitude}"
+
+                SetLocationAndWeather(location)
+                //get Weather By Lat and Log request Location
+                observerWeatherAPI()
+
+
 
             } ?: kotlin.run {
                 // Handle Null case or Request periodic location update
                 // https://developer.android.com/training/location/receive-location-updates
             }
         }
+    }
+
+    private fun SetLocationAndWeather(location: Location?) {
+
+        tvLocation.text = "lat:  ${location!!.latitude} lon: ${location.longitude}"
+        viewModel.setLatLon(location!!.latitude, location.longitude)
+
     }
 
     override fun onConnectionSuspended(p0: Int) {
@@ -168,7 +200,9 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
 
     override fun onLocationChanged(location: Location?) {
 
-        tvLocation.text = "${location!!.latitude} - ${location.longitude}"
+        SetLocationAndWeather(location)
+        //viewModel.setLatLon(location!!.latitude,location.longitude)
+
     }
 
     override fun onStart() {

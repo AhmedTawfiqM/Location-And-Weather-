@@ -11,7 +11,7 @@ object WeatherRepo {
     var job: CompletableJob? = null
 
 
-    fun getWeather(lat: Int, lon: Int): LiveData<RootObject> {
+    fun getWeather(lat: Double, lon: Double): LiveData<RootObject> {
 
         job = Job()
 
@@ -24,7 +24,7 @@ object WeatherRepo {
 
                     CoroutineScope(Dispatchers.IO + thejob).launch {
 
-                        val rootObject = RetrofitBuilder.apiService.getWeather(lat, lon)
+                        val rootObject = RetrofitBuilder.apiService.getWeather(lat, lon, RetrofitBuilder.API_KEY)
                         withContext(Dispatchers.Main){
 
                             value = rootObject
