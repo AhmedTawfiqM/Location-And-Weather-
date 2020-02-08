@@ -1,7 +1,10 @@
 package com.atdev.findlocation.pojo.network
 
+import com.atdev.findlocation.pojo.network.HttpClient.okHttpClient
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 
 object RetrofitBuilder {
@@ -13,13 +16,17 @@ object RetrofitBuilder {
 
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
 
     }
+
 
     val apiService: ApiService by lazy {
 
         retrofitBuilder.build()
             .create(ApiService::class.java)
     }
+
+
 }

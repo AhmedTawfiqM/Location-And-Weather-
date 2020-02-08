@@ -16,4 +16,5 @@ interface ApiService {
         @Query("appid") appidKey: String
     ): RootObject
 
+    //
 }

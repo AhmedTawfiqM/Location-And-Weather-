@@ -38,14 +38,14 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
         setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
+        //
 
         checkPermissions()
 
         if (checkPermissions())
             buildLocationNow()
 
-
+        //
     }
 
 
@@ -171,7 +171,6 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
                 SetLocationAndWeather(location)
                 //get Weather By Lat and Log request Location
                 observerWeatherAPI()
-
 
 
             } ?: kotlin.run {
