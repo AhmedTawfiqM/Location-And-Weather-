@@ -1,7 +1,6 @@
 package com.atdev.findlocation.pojo.repos
 
 import androidx.lifecycle.LiveData
-import com.atdev.findlocation.pojo.models.Main
 import com.atdev.findlocation.pojo.models.RootObject
 import com.atdev.findlocation.pojo.network.RetrofitBuilder
 import kotlinx.coroutines.*
@@ -13,6 +12,7 @@ object WeatherRepo {
 
     fun getWeather(lat: Double, lon: Double): LiveData<RootObject> {
 
+        //..
         job = Job()
 
         return object : LiveData<RootObject>() {

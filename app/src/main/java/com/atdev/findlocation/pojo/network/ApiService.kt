@@ -2,7 +2,6 @@ package com.atdev.findlocation.pojo.network
 
 import com.atdev.findlocation.pojo.models.RootObject
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
