@@ -1,4 +1,4 @@
-package com.atdev.findlocation.ui.main
+package com.atdev.findlocation.ui.mainactivity
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
