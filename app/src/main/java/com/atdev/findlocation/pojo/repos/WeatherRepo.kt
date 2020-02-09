@@ -9,7 +9,6 @@ object WeatherRepo {
 
     var job: CompletableJob? = null
 
-
     fun getWeather(lat: Double, lon: Double): LiveData<RootObject> {
 
         //..
