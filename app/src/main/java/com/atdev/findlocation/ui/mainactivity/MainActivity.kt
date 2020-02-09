@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
 
             return false
         }
-
         return true
     }
 

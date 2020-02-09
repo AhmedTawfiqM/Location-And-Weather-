@@ -12,7 +12,6 @@ class MainViewModel : ViewModel() {
     private var lat: MutableLiveData<Double> = MutableLiveData()
     private var lon: MutableLiveData<Double> = MutableLiveData()
 
-
     val rootObject: LiveData<RootObject> = Transformations
         .switchMap(lat) {
 
